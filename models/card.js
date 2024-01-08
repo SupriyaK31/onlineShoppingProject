@@ -9,15 +9,16 @@ const p=path.join(
 module.exports=class Cart{
 static addProduct(id,productPrice){
     //fetching  the previous cart
+    let cart={products:[],totalPrice:0};
     fs.readFile(p,(err,fileContent)=>{
-        let cart={products:[],totalPrice:0};
+       
         if(!err){
             cart=JSON.parse(fileContent);
         }
     })
     //analyze the cart=>find existing product
     const existingProductIndex =cart.products.findIndex(prod=> prod.id===id);
-    const existingProduct=card.products[existingProductIndex];
+    const existingProduct=cart.products[existingProductIndex];
     let updatedProduct;
        //add new product/increase qty
     if(existingProduct){
